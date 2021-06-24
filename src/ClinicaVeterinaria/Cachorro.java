@@ -6,9 +6,10 @@ public class Cachorro extends Animal {
 	private static final long serialVersionUID = 1L;
 
 	public String alimentacao() {
-		return "RaÃ§Ã£o e carne";
+		return "Ração e carne";
 	}
-        public String cuidadosProprios() {
+    
+	public String cuidadosProprios() {
 		return "Banho, tosa e passeio";
 	}
         

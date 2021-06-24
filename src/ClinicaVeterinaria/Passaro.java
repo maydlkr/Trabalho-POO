@@ -8,12 +8,13 @@ public class Passaro extends Animal {
 	public String alimentacao() {
 		return "Alpiste e frutas";
 	}
-        public String cuidadosProprios() {
-		return "Abrigo e estÃ­mulos";
+    
+	public String cuidadosProprios() {
+		return "Abrigo e estímulos";
 	}
         
 	public Passaro (String nome, int idade, String dono) {
 		super(nome, idade, dono);
-		this.especie = "PÃ¡ssaro";
+		this.especie = "Pássaro";
 	}
 }

@@ -6,9 +6,10 @@ public class Cavalo extends Animal {
 	private static final long serialVersionUID = 1L;
 
 	public String alimentacao() {
-		return "RaÃ§Ã£o, aveia e alfafa";
+		return "Ração, aveia e alfafa";
 	}
-        public String cuidadosProprios() {
+    
+	public String cuidadosProprios() {
 		return "Corrida, trote e limpeza de cascos";
 	}
         

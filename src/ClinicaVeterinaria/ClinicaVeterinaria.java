@@ -8,15 +8,18 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 
 public class ClinicaVeterinaria {
+	
 	private ArrayList<Animal> animais;
 
 	public ClinicaVeterinaria() {
 		this.animais = new ArrayList<Animal>();
 	}
+	
 	public String[] leValores (String [] dadosIn){
 		String [] dadosOut = new String [dadosIn.length];
 
@@ -76,18 +79,18 @@ public class ClinicaVeterinaria {
 
 	private boolean intValido(String s) {
 		try {
-			Integer.parseInt(s); // M√©todo est√°tico, que tenta tranformar uma string em inteiro
+			Integer.parseInt(s); // MÈtodo est·tico, que tenta tranformar uma string em inteiro
 			return true;
-		} catch (NumberFormatException e) { // N√£o conseguiu tranformar em inteiro e gera erro
+		} catch (NumberFormatException e) { // N„o conseguiu tranformar em inteiro e gera erro
 			return false;
 		}
 	}
 	public int retornaInteiro(String entrada) { // retorna um valor inteiro
 		int numInt;
 
-		//Enquanto n√£o for poss√≠vel converter o valor de entrada para inteiro, permanece no loop
+		//Enquanto n„o for possÌvel converter o valor de entrada para inteiro, permanece no loop
 		while (!this.intValido(entrada)) {
-			entrada = JOptionPane.showInputDialog(null, "Valor incorreto!\n\nDigite um n√∫mero inteiro.");
+			entrada = JOptionPane.showInputDialog(null, "Valor incorreto!\n\nDigite um n˙mero inteiro.");
 		}
 		return Integer.parseInt(entrada);
 	}
@@ -95,12 +98,13 @@ public class ClinicaVeterinaria {
 	public void salvaAnimais (ArrayList<Animal> animais){
 		ObjectOutputStream outputStream = null;
 		try {
-			outputStream = new ObjectOutputStream 
-					(new FileOutputStream("c:\\temp\\clinicaVeterinaria.dados"));
-			for (int i=0; i < animais.size(); i++)
+			FileOutputStream fos = new FileOutputStream("C:\\Windows\\Temp\\ClinicaVeterinaria.dados");
+			outputStream = new ObjectOutputStream(fos);
+			for (int i=0; i < animais.size(); i++) {
 				outputStream.writeObject(animais.get(i));
+			}
 		} catch (FileNotFoundException ex) {
-			JOptionPane.showMessageDialog(null,"Imposs√≠vel criar arquivo!");
+			JOptionPane.showMessageDialog(null,"ImpossÌvel criar arquivo!");
 			ex.printStackTrace();
 		} catch (IOException ex) {
 			ex.printStackTrace();
@@ -123,8 +127,9 @@ public class ClinicaVeterinaria {
 		ObjectInputStream inputStream = null;
 
 		try {	
-			inputStream = new ObjectInputStream
-					(new FileInputStream("c:\\temp\\petStore.dados"));
+			FileInputStream fos = new FileInputStream("C:\\Windows\\Temp\\ClinicaVeterinaria.dados");
+			inputStream = new ObjectInputStream(fos);
+			
 			Object obj = null;
 			while ((obj = inputStream.readObject()) != null) {
 				if (obj instanceof Animal) {
@@ -136,7 +141,7 @@ public class ClinicaVeterinaria {
 		} catch (ClassNotFoundException ex) {
 			ex.printStackTrace();
 		} catch (FileNotFoundException ex) {
-			JOptionPane.showMessageDialog(null,"Arquivo com animais N√ÉO existe!");
+			JOptionPane.showMessageDialog(null,"Arquivo com animais N√O existe!");
 			ex.printStackTrace();
 		} catch (IOException ex) {
 			ex.printStackTrace();
@@ -159,8 +164,8 @@ public class ClinicaVeterinaria {
 		int    opc1, opc2;
 
 		do {
-			menu = "Controle Cl√≠nica Veterin√°ria\n" +
-					"Op√ß√µes:\n" + 
+			menu = "Controle ClÌnica Veterin·ria\n" +
+					"OpÁıes:\n" + 
 					"1. Entrar Animais\n" +
 					"2. Exibir Animais\n" +
 					"3. Limpar Animais\n" +
@@ -173,11 +178,11 @@ public class ClinicaVeterinaria {
 			switch (opc1) {
 			case 1:// Entrar dados
 				menu = "Entrada de Animais\n" +
-						"Op√ß√µes:\n" + 
+						"OpÁıes:\n" + 
 						"1. Cachorro\n" +
 						"2. Gato\n" +
-                                                "3. Cavalo\n" +
-                                                "4. P√°ssaro\n";
+                        "3. Cavalo\n" +
+                        "4. P·ssaro\n";
 
 				entrada = JOptionPane.showInputDialog (menu + "\n\n");
 				opc2 = this.retornaInteiro(entrada);
@@ -187,12 +192,12 @@ public class ClinicaVeterinaria {
 				break;
 				case 2: animais.add((Animal)leGato());
 				break;
-                                case 3: animais.add((Animal)leCavalo());
+                case 3: animais.add((Animal)leCavalo());
 				break;
-                                case 4: animais.add((Animal)lePassaro());
+                case 4: animais.add((Animal)lePassaro());
 				break;
 				default: 
-					JOptionPane.showMessageDialog(null,"Animal para entrada N√ÉO escolhido!");
+					JOptionPane.showMessageDialog(null,"Animal para entrada N√O escolhido!");
 				}
 
 				break;
@@ -232,14 +237,14 @@ public class ClinicaVeterinaria {
 				JOptionPane.showMessageDialog(null,"Dados RECUPERADOS com sucesso!");
 				break;
 			case 9:
-				JOptionPane.showMessageDialog(null,"Fim do aplicativo Cl√≠nica Veterin√°ria");
+				JOptionPane.showMessageDialog(null,"Fim do aplicativo ClÌnica Veterin·ria");
 				break;
 			}
 		} while (opc1 != 9);
 	}
 
 
-	public static void main (String [] args){
+	public static void main (String [] args){ // MAIN!!!!!!!!
 
 		ClinicaVeterinaria bicho = new ClinicaVeterinaria ();
 		bicho.menuClinicaVeterinaria();
