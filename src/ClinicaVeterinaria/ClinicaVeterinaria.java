@@ -79,16 +79,16 @@ public class ClinicaVeterinaria {
 
 	private boolean intValido(String s) {
 		try {
-			Integer.parseInt(s); // Método estático, que tenta tranformar uma string em inteiro
+			Integer.parseInt(s);
 			return true;
-		} catch (NumberFormatException e) { // Não conseguiu tranformar em inteiro e gera erro
+		} catch (NumberFormatException e) {
 			return false;
 		}
 	}
-	public int retornaInteiro(String entrada) { // retorna um valor inteiro
+	public int retornaInteiro(String entrada) {
 		int numInt;
 
-		//Enquanto não for possível converter o valor de entrada para inteiro, permanece no loop
+		
 		while (!this.intValido(entrada)) {
 			entrada = JOptionPane.showInputDialog(null, "Valor incorreto!\n\nDigite um número inteiro.");
 		}
@@ -98,8 +98,8 @@ public class ClinicaVeterinaria {
 	public void salvaAnimais (ArrayList<Animal> animais){
 		ObjectOutputStream outputStream = null;
 		try {
-			FileOutputStream fos = new FileOutputStream("C:\\Windows\\Temp\\ClinicaVeterinaria.dados");
-			outputStream = new ObjectOutputStream(fos);
+			FileOutputStream fos = new FileOutputStream("C:\\Windows\\Temp\\ClinicaVeterinaria.dados"); //alteração de caminho
+			outputStream = new ObjectOutputStream(fos); 
 			for (int i=0; i < animais.size(); i++) {
 				outputStream.writeObject(animais.get(i));
 			}
@@ -108,7 +108,7 @@ public class ClinicaVeterinaria {
 			ex.printStackTrace();
 		} catch (IOException ex) {
 			ex.printStackTrace();
-		} finally {  //Close the ObjectOutputStream
+		} finally { 
 			try {
 				if (outputStream != null) {
 					outputStream.flush();
@@ -127,8 +127,8 @@ public class ClinicaVeterinaria {
 		ObjectInputStream inputStream = null;
 
 		try {	
-			FileInputStream fos = new FileInputStream("C:\\Windows\\Temp\\ClinicaVeterinaria.dados");
-			inputStream = new ObjectInputStream(fos);
+			FileInputStream fos = new FileInputStream("C:\\Windows\\Temp\\ClinicaVeterinaria.dados"); 
+			inputStream = new ObjectInputStream(fos); 
 			
 			Object obj = null;
 			while ((obj = inputStream.readObject()) != null) {
@@ -136,7 +136,7 @@ public class ClinicaVeterinaria {
 					animaisTemp.add((Animal) obj);
 				}   
 			}          
-		} catch (EOFException ex) { // when EOF is reached
+		} catch (EOFException ex) { 
 			System.out.println("Fim de arquivo.");
 		} catch (ClassNotFoundException ex) {
 			ex.printStackTrace();
@@ -145,7 +145,7 @@ public class ClinicaVeterinaria {
 			ex.printStackTrace();
 		} catch (IOException ex) {
 			ex.printStackTrace();
-		} finally {  //Close the ObjectInputStream
+		} finally {  
 			try {
 				if (inputStream != null) {
 					inputStream.close();
@@ -176,7 +176,7 @@ public class ClinicaVeterinaria {
 			opc1 = this.retornaInteiro(entrada);
 
 			switch (opc1) {
-			case 1:// Entrar dados
+			case 1:
 				menu = "Entrada de Animais\n" +
 						"Opções:\n" + 
 						"1. Cachorro\n" +
@@ -201,7 +201,7 @@ public class ClinicaVeterinaria {
 				}
 
 				break;
-			case 2: // Exibir dados
+			case 2:
 				if (animais.size() == 0) {
 					JOptionPane.showMessageDialog(null,"Entre com animais primeiramente");
 					break;
@@ -212,7 +212,7 @@ public class ClinicaVeterinaria {
 				}
 				JOptionPane.showMessageDialog(null,dados);
 				break;
-			case 3: // Limpar Dados
+			case 3: 
 				if (animais.size() == 0) {
 					JOptionPane.showMessageDialog(null,"Entre com animais primeiramente");
 					break;
@@ -220,7 +220,7 @@ public class ClinicaVeterinaria {
 				animais.clear();
 				JOptionPane.showMessageDialog(null,"Dados LIMPOS com sucesso!");
 				break;
-			case 4: // Grava Dados
+			case 4: 
 				if (animais.size() == 0) {
 					JOptionPane.showMessageDialog(null,"Entre com animais primeiramente");
 					break;
@@ -228,7 +228,7 @@ public class ClinicaVeterinaria {
 				salvaAnimais(animais);
 				JOptionPane.showMessageDialog(null,"Dados SALVOS com sucesso!");
 				break;
-			case 5: // Recupera Dados
+			case 5: 
 				animais = recuperaAnimais();
 				if (animais.size() == 0) {
 					JOptionPane.showMessageDialog(null,"Sem dados para apresentar.");
@@ -244,7 +244,7 @@ public class ClinicaVeterinaria {
 	}
 
 
-	public static void main (String [] args){ // MAIN!!!!!!!!
+	public static void main (String [] args){ 
 
 		ClinicaVeterinaria bicho = new ClinicaVeterinaria ();
 		bicho.menuClinicaVeterinaria();
